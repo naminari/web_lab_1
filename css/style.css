@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.top {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    flex: 1;
+    background-color: lightblue;
+}
+
+.divider {
+    height: 1px;
+    background-color: gray;
+}
+
+.middle {
+    display: flex;
+    height: 750px;
+}
+
+.block1 {
+    flex: 1;
+    background-color: lightgreen;
+}
+
+.block2 {
+    flex: 1;
+    background-color: lightyellow;
+}
+
+.bottom {
+    flex: 1;
+    background-color: lightpink;
+}

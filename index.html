@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="favicon.png">
+    <title>треш</title>
+
+<!--     <link rel="stylesheet index" href="css/index.css">
+    <link rel="stylesheet header" href="css/header_style.css">
+    <link rel="stylesheet table" href="css/table.css"> -->
+</head>
+<body>
+    <header class="header">
+        <a href="https://github.com/naminari">
+            <img alt="Логотип"  src="#">
+        </a>
+        <div>
+            <span>
+                <a href="https://www.youtube.com/watch?v=YXexSXix3zs">Иванов Леонид</a>
+                P3208
+            </span>
+            <span>
+                Вариант
+                <a href="#">1808</a>
+            </span>
+        </div>
+    </header>
+    <table class="all-tables">
+        <tr class="graph-data">
+            <td>
+                <svg height="300" width="300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Стерлки и оси -->
+                    <line stroke="black" x1="0" x2="300" y1="150" y2="150"></line>
+                    <line stroke="black" x1="150" x2="150" y1="0" y2="300"></line>
+                    <polygon fill="black" points="150,0 144,15 156,15" stroke="black"></polygon>
+                    <polygon fill="black" points="300,150 285,156 285,144" stroke="black"></polygon>
+
+                    <!-- Деления -->
+                    <line stroke="black" x1="200" x2="200" y1="155" y2="145"></line>
+                    <line stroke="black" x1="250" x2="250" y1="155" y2="145"></line>
+
+                    <line stroke="black" x1="50" x2="50" y1="155" y2="145"></line>
+                    <line stroke="black" x1="100" x2="100" y1="155" y2="145"></line>
+
+                    <line stroke="black" x1="145" x2="155" y1="100" y2="100"></line>
+                    <line stroke="black" x1="145" x2="155" y1="50" y2="50"></line>
+
+                    <line stroke="black" x1="145" x2="155" y1="200" y2="200"></line>
+                    <line stroke="black" x1="145" x2="155" y1="250" y2="250"></line>
+
+                    <!-- Подписи к делениям и осям -->
+                    <text fill="black" x="195" y="140">R/2</text>
+                    <text fill="black" x="250" y="140">R</text>
+
+                    <text fill="black" x="40" y="140">-R</text>
+                    <text fill="black" x="85" y="140">-R/2</text>
+
+                    <text fill="black" x="160" y="55">R</text>
+                    <text fill="black" x="160" y="105">R/2</text>
+
+                    <text fill="black" x="160" y="204">-R/2</text>
+                    <text fill="black" x="160" y="255">-R</text>
+
+                    <text fill="black" x="285" y="140">X</text>
+                    <text fill="black" x="160" y="15">Y</text>
+
+                    <!-- Первая фигура -->
+                    <polygon fill="blue"
+                             fill-opacity="0.2"
+                             stroke="blue"
+                             points="150,150 200,150 200,250 150,250"></polygon>
+
+                    <!-- Вторая фигура -->
+                    <polygon fill="blue"
+                             fill-opacity="0.2"
+                             stroke="blue"
+                             points="150,150 250,150 150,50"></polygon>
+
+                    <!-- Третья фигура -->
+                    <path fill="blue"
+                          fill-opacity="0.2"
+                          stroke="blue"
+                          d="M 150 50 C 50 50, 50 150, 50 150 L 150 150 Z"></path>
+
+                    <!-- Точка на графике -->
+                    <circle id="point" r="4" cx="150" cy="150" fill="red" stroke="white" visibility="hidden"/>
+
+                </svg>
+            </td>
+            <td>
+                    <div class="X">
+                        X:
+                        <input id="X-text" class="X-text-input" type="text" name="x" placeholder="[-5; 3]" maxlength="14" required/>
+
+                    </div>
+                    <div class="Y-text" id="Y">
+                        <label>
+                            Y:
+                            <select name="Y" class="y-select">
+                                <option value="none" selected disabled hidden></option>
+                                <option value="-2">-2</option>
+                                <option value="-1.5">-1.5</option>
+                                <option value="-1">-1</option>
+                                <option value="-0.5">-0.5</option>
+                                <option value="0">0</option>
+                                <option value="0.5">0.5</option>
+                                <option value="1">1</option>
+                                <option value="1.5">1.5</option>
+                                <option value="2">2</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="R-text" id="R">
+                        <fieldset>
+                            <legend>Radius:</legend>
+                            <div id="radio-radius">
+            
+                                <label for="contactChoice1">
+                                    <input
+                                            type="radio" name="R"
+                                            value="1"
+                                            id="contactChoice1"
+                                            checked/>
+                                    <span>1</span>
+                                </label>
+            
+                                <label for="contactChoice3">
+                                    <input
+                                            type="radio" name="R" value="1.5"
+                                            id="contactChoice3"/>
+                                    <span>1.5</span>
+                                </label>
+            
+                                <label for="contactChoice4">
+                                    <input
+                                            type="radio" name="R" value="2"
+                                            id="contactChoice4"/>
+                                    <span>2</span>
+                                </label>
+            
+                                <label for="contactChoice5">
+                                    <input
+                                            type="radio" name="R" value="2.5"
+                                            id="contactChoice5"/>
+                                    <span>2.5</span>
+                                </label>
+            
+                                <label for="contactChoice6">
+                                    <input
+                                            type="radio" name="R" value="3"
+                                            id="contactChoice6"/>
+                                    <span>3</span>
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button id="submit-button" type="submit">Отправить</button>
+                    <button id="clear-button" type="reset">Очистить таблицу</button>
+            </td>
+        </tr>
+    </table>
+    <table id="check" class="table-check">
+            <tr class="table-header">
+                <th scope="col">X</th>
+                <th scope="col">Y</th>
+                <th scope="col">R</th>
+                <th scope="col">Текущее время</th>
+                <th scope="col">Время исполнения</th>
+                <th scope="col">Результат попадания</th>
+            </tr>
+    </table>
+<script type="text/javascript" src="C:\Users\naminari\Downloads\лабы\ВЕБ\треш\js\jquary.js"></script>
+<script type="text/javascript" src="js/client.js"></script>
+</body>
+</html>
