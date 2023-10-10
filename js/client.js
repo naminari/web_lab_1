@@ -1,49 +1,110 @@
-let X_id = "X-text";
-let Y_id = "Y-text";
-let R_id = "R-text";
+let X, Y, R;
 
 
-document.addEventListener("DOMContentLoaded", function(){
+/* document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("submit-button").addEventListener("click", submit);
     document.getElementById("clear-button").addEventListener("click", clearButton);
-});
+}); */
 
-function chechCoordinate(coordinate_element, min, max){
-    let cooordinate_text = document.getElementById(coordinate_element.id);
-    let coordinate_value = cooordinate_text.value.replace(",",".");
-    if (coordinate_value.trim() === ""){
-        coordinate_element.setCustomValidity("Заполните поле");
+function checkX(){
+    let X_text = document.getElementById("X-text");
+    X = X_text.value.replace(",", ".");
+    if (X.trim() === ""){
+        X_text.setCustomValidity("Заполните поле");
+        new Toast({
+            title: false,
+            text: 'Такой-то товар добавлен в корзину...',
+            theme: 'light',
+            autohide: false
+        })
         return false;
-    } else if(!isFinite(coordinate_value)){
-        coordinate_element.setCustomValidity("Должно быть число!");
+    } else if (!isFinite(X)){
+        X_text.setCustomValidity("Должно быть число!");
         return false;
-    } else if (coordinate_value > max || coordinate_value < min){
-        coordinate_element.setCustomValidity("Вы вышли за диапазон [" + min + ";" + max + "]!");
+    } else if (X > 5 || X < -5){
+        X_text.setCustomValidity("Вы вышли за диапазон [-5; 3]!");
         return false;
     }
-    coordinate_element.setCustomValidity("");
+    X_text.setCustomValidity("");
     return true;
 }
 
+function checkY(){
+    let Y_text = document.querySelector(".y-select").value;
+    Y = Y_text.replace(",", ".");
+    if (Y.trim() === ""){
+        Y_text.setCustomValidity("Заполните поле");
+        return false;
+    } else if (!isFinite(Y)){
+        Y_text.setCustomValidity("Должно быть число!");
+        return false;
+    } else if (Y > 5 || Y < -5){
+        Y_text.setCustomValidity("Вы вышли за диапазон [-2; 2]!");
+        return false;
+    }
+    return true;
+}
 
-const submit = function (e){
-    let X_element = document.getElementById(X_id);
-    let Y_element = document.getElementById(Y_id);
-    let R_element = document.getElementById(R_id);
-    if (!chechCoordinate(X_element, -5, 3)) return;
-    if (!chechCoordinate(Y_element, -2, 2)) return;
-    if (!chechCoordinate(R_element, 1, 4)) return;
-    e.preventDefoult();
+function checkR(){
+    let R_text = document.querySelector("input[name='R']:checked");
+    R = R_text.value.replace(",", ".");
+    if (R.trim() === ""){
+        R_text.setCustomValidity("Заполните поле");
+        return false;
+    } else if (!isFinite(R)){
+        R_text.setCustomValidity("Должно быть число!");
+        return false;
+    } else if (R < 0){
+        R_text.setCustomValidity("Радиус не может быть отрицательным")
+        return false;
+    } else if (R > 4 || R < 1){
+        R_text.setCustomValidity("Вы вышли за диапазон [1; 4]!");
+        return false;
+    }
+    R_text.setCustomValidity("");
+    return true;
+}
+
+async function submit(){
+
+    if (!checkX()) return;
+    if (!checkY()) return;
+    if (!checkR()) return;
 
     let request = ("?x=" + X + "&y=" + Y + "&r=" + R);
     
-    fetch("php/check.php" + request)
-        .then(response => response.text())
-        .then(response => document.getElementById("check").innerHTML = response);
+    try {
+        const response = await fetch("php/check.php" + request);
+        const result = await response.text();
+        document.getElementById("check").innerHTML = result;
+    } catch (error) {
+        console.log(error);
+    }
 };
-const clearButton = function (e){
-    e.preventDefault();
-    fetch("php/clear_table.php")
-        .then(response => response.text())
-        .then(response => document.getElementById("check").innerHTML = response)
+
+async function clearButton(){
+    try {
+        const response = await fetch("php/clear_table.php");
+        const result = await response.text();
+        document.getElementById("check").innerHTML = result;
+    } catch (error) {
+        console.log(error);
+    }
 };
+
+document.addEventListener("DOMContentLoaded", function() {
+    fetch('php/load.php', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.text())
+      .then(data => {
+        console.log(data);
+        document.querySelector("#check>tbody").innerHTML = data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });

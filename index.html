@@ -1,34 +1,207 @@
 <!DOCTYPE html>
 <html lang="ru">
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+          font-family: Arial, sans-serif;
+          flex-wrap: wrap;
+        }
+    
+        header, footer {
+          background-color: #0a0a0a;
+          padding: 20px;
+          height: 12px;
+        }
+    
+        main {
+          flex: 1;
+          display: flex;
+          justify-content: space-between;
+          background-color: rgb(49, 48, 48);
+          flex-wrap: wrap;
+        }
+    
+        .block {
+        display: flex;
+        flex: 2;
+        padding: 10px;
+        background-color: rgb(49, 48, 48); 
+        }
+        
+        header{
+            color: #fffafa;
+            font-family: 'Roboto';
+            font-weight: bold;
+        }
+
+        .block.left{
+            align-items: start;
+            justify-content: flex-end;
+            margin-top: 200px;
+            margin-right: 10px;
+            flex: 1 1 200px;
+        }
+
+        .block.right{
+            align-items: start;
+            justify-content: flex-start;
+            margin-top: 170px;
+            margin-left: 10px;
+            flex: 1 1 300px;
+            
+        }
+
+        .scroll-table{
+            margin-bottom: 10px;
+            overflow-y: auto;
+            max-height: 300px;
+            min-width: 450px;
+            
+        }
+        .table{
+            width: 70%;
+            margin-bottom: 20px;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow-y: auto;
+        }
+
+        .table thead th {
+            font-weight: bold;
+            text-align: left;
+            border: none;
+            padding: 10px 15px;
+            background: #d8d8d8;
+            font-size: 14px;
+            border-left: 1px solid #0c0c0c;
+            border-right: 1px solid #080808;
+        }
+        .table tbody td {
+            text-align: left;
+            border-left: 1px solid #000000;
+            border-right: 1px solid #000000;
+            border-spacing: 0;
+            padding: 10px 15px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        .tbody tr:nth-child(even){
+            background: #0a0a0a;
+        }
+        /* Стили для скролла */
+        ::-webkit-scrollbar {
+            width: 6px;
+        } 
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(247, 247, 247, 0.3); 
+        } 
+        ::-webkit-scrollbar-thumb {
+            box-shadow: inset 0 0 6px rgba(248, 246, 246, 0.3); 
+        }
+        table { 
+            border-collapse: collapse;         
+            width: 100%; 
+            } 
+            th, 
+            td { 
+            padding: 10px 15px; 
+            border: 1px solid #ebebeb; 
+            } 
+            th { 
+            background: #ebebeb; 
+            } 
+
+            .button {
+            appearance: none;
+            background-color: white;
+            border: 1px solid rgba(27, 31, 35, 0.15);
+            box-shadow:
+                rgba(27, 31, 35, 0.04) 0 1px 0,
+                rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+            box-sizing: border-box;
+            color: #24292e;
+            cursor: pointer;
+            display: inline-block;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 20px;
+            list-style: none;
+            padding: 6px 16px;
+            position: relative;
+            transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            white-space: nowrap;
+            word-wrap: break-word;
+            }
+
+            .button:hover {
+            background-color: #f3f4f6;
+            text-decoration: none;
+            transition-duration: 0.1s;
+            }
+
+            .button:disabled {
+            background-color: #fafbfc;
+            border-color: rgba(27, 31, 35, 0.15);
+            color: #959da5;
+            cursor: default;
+            }
+
+            .button:active {
+            background-color: #edeff2;
+            box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+            transition: none 0s;
+            }
+
+            .button:focus {
+            outline: 1px transparent;
+            }
+
+            .button:before {
+            display: none;
+            }
+
+            .button::-webkit-details-marker {
+            display: none;
+            }
+            
+      </style>
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="favicon.png">
     <title>треш</title>
 
-<!--     <link rel="stylesheet index" href="css/index.css">
-    <link rel="stylesheet header" href="css/header_style.css">
-    <link rel="stylesheet table" href="css/table.css"> -->
 </head>
 <body>
-    <header class="header">
-        <a href="https://github.com/naminari">
-            <img alt="Логотип"  src="#">
-        </a>
-        <div>
-            <span>
-                <a href="https://www.youtube.com/watch?v=YXexSXix3zs">Иванов Леонид</a>
-                P3208
-            </span>
-            <span>
-                Вариант
-                <a href="#">1808</a>
-            </span>
+    <header> Иванов Леонид Р3208 Вар. 1808</header>
+<main>
+    <div class="block left">
+        <div class="scroll-table">
+            <table id="check" class=" table">
+                <thead>
+                    <tr class="table-header">
+                        <th scope="col">X</th>
+                        <th scope="col">Y</th>
+                        <th scope="col">R</th>
+                        <th scope="col">Текущее время</th>
+                        <th scope="col">Время исполнения</th>
+                        <th scope="col">Результат попадания</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
-    </header>
-    <table class="all-tables">
-        <tr class="graph-data">
-            <td>
-                <svg height="300" width="300" xmlns="http://www.w3.org/2000/svg">
+    </div>
+<div class="block right">
+        <svg height="300" width="300" xmlns="http://www.w3.org/2000/svg">
                     <!-- Стерлки и оси -->
                     <line stroke="black" x1="0" x2="300" y1="150" y2="150"></line>
                     <line stroke="black" x1="150" x2="150" y1="0" y2="300"></line>
@@ -65,35 +238,30 @@
                     <text fill="black" x="160" y="15">Y</text>
 
                     <!-- Первая фигура -->
-                    <polygon fill="blue"
+                    <polygon fill="purple"
                              fill-opacity="0.2"
-                             stroke="blue"
+                             stroke="purple"
                              points="150,150 200,150 200,250 150,250"></polygon>
 
                     <!-- Вторая фигура -->
-                    <polygon fill="blue"
+                    <polygon fill="purple"
                              fill-opacity="0.2"
-                             stroke="blue"
+                             stroke="purple"
                              points="150,150 250,150 150,50"></polygon>
 
                     <!-- Третья фигура -->
-                    <path fill="blue"
+                    <path fill="purple"
                           fill-opacity="0.2"
-                          stroke="blue"
+                          stroke="purple"
                           d="M 150 50 C 50 50, 50 150, 50 150 L 150 150 Z"></path>
-
-                    <!-- Точка на графике -->
-                    <circle id="point" r="4" cx="150" cy="150" fill="red" stroke="white" visibility="hidden"/>
-
-                </svg>
-            </td>
-            <td>
+    
+            </svg>
+                <div class="interactive-input">
                     <div class="X">
                         X:
                         <input id="X-text" class="X-text-input" type="text" name="x" placeholder="[-5; 3]" maxlength="14" required/>
-
                     </div>
-                    <div class="Y-text" id="Y">
+                    <div class="Y-text" id="Y-text">
                         <label>
                             Y:
                             <select name="Y" class="y-select">
@@ -115,7 +283,7 @@
                             <legend>Radius:</legend>
                             <div id="radio-radius">
             
-                                <label for="contactChoice1">
+                                <label for="contactChoiceOne">
                                     <input
                                             type="radio" name="R"
                                             value="1"
@@ -124,28 +292,28 @@
                                     <span>1</span>
                                 </label>
             
-                                <label for="contactChoice3">
+                                <label for="contactChoiceOneAndHalf">
                                     <input
                                             type="radio" name="R" value="1.5"
                                             id="contactChoice3"/>
                                     <span>1.5</span>
                                 </label>
             
-                                <label for="contactChoice4">
+                                <label for="contactChoiceTwo">
                                     <input
                                             type="radio" name="R" value="2"
                                             id="contactChoice4"/>
                                     <span>2</span>
                                 </label>
             
-                                <label for="contactChoice5">
+                                <label for="contactChoiceTwoAndHalf">
                                     <input
                                             type="radio" name="R" value="2.5"
                                             id="contactChoice5"/>
                                     <span>2.5</span>
                                 </label>
             
-                                <label for="contactChoice6">
+                                <label for="contactChoiceThree">
                                     <input
                                             type="radio" name="R" value="3"
                                             id="contactChoice6"/>
@@ -153,23 +321,20 @@
                                 </label>
                             </div>
                         </fieldset>
-                    </div>
-                    <button id="submit-button" type="submit">Отправить</button>
-                    <button id="clear-button" type="reset">Очистить таблицу</button>
-            </td>
-        </tr>
-    </table>
-    <table id="check" class="table-check">
-            <tr class="table-header">
-                <th scope="col">X</th>
-                <th scope="col">Y</th>
-                <th scope="col">R</th>
-                <th scope="col">Текущее время</th>
-                <th scope="col">Время исполнения</th>
-                <th scope="col">Результат попадания</th>
-            </tr>
-    </table>
-<script type="text/javascript" src="C:\Users\naminari\Downloads\лабы\ВЕБ\треш\js\jquary.js"></script>
-<script type="text/javascript" src="js/client.js"></script>
+                    </div>  
+                    <button class="button" id="submit-button" onclick="submit()" role="button">Отправить</button>
+                    <button class="button" id="clear-button" onclick="clearButton()" role="button">Очистить таблицу</button>
+    </div>
+</div>
+</main>
+ <footer> 2023 ИТМО ПИиКТ. Создано с помощью HTML/CSS, JS. Все права защищены.</footer>
+<!--     <div class="footer"> &copy; 2023 ИТМО ПИиКТ. Создано с помощью HTML/CSS, JS. Все права защищены.</div>
+ -->   <!--  <script type="text/css" src="css/toast.min.css"></script>
+    <script type="text/javascript" src="js/toast.min.js"></script>
+ -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="js/client.js"></script>
+    <script type="text/css" src="css/style.css"></script>
 </body>
 </html>
