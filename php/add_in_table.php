@@ -8,12 +8,12 @@
 </tr>
 
 <?php foreach ($_SESSION["data"] as $value){ ?>
-    <tr class="table-row">
+    <tr class="table-header">
         <td><?php echo $value[0] ?></td>
         <td><?php echo $value[1] ?></td>
         <td><?php echo $value[2] ?></td>
         <td><?php echo $value[3] ?></td>
         <td><?php echo $value[4] ?> ms</td>
-        <?php echo $value[5] ?> </td>"
+        <td><?php echo $value[5] ?></td>
     </tr>
 <?php } ?>

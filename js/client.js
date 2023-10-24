@@ -11,12 +11,6 @@ function checkX(){
     X = X_text.value.replace(",", ".");
     if (X.trim() === ""){
         X_text.setCustomValidity("Заполните поле");
-        new Toast({
-            title: false,
-            text: 'Такой-то товар добавлен в корзину...',
-            theme: 'light',
-            autohide: false
-        })
         return false;
     } else if (!isFinite(X)){
         X_text.setCustomValidity("Должно быть число!");
@@ -25,7 +19,6 @@ function checkX(){
         X_text.setCustomValidity("Вы вышли за диапазон [-5; 3]!");
         return false;
     }
-    X_text.setCustomValidity("");
     return true;
 }
 
@@ -46,8 +39,8 @@ function checkY(){
 }
 
 function checkR(){
-    let R_text = document.querySelector("input[name='R']:checked");
-    R = R_text.value.replace(",", ".");
+    let R_text = document.querySelector("input[name='radio']:checked").value;
+    R = R_text.replace(",", ".");
     if (R.trim() === ""){
         R_text.setCustomValidity("Заполните поле");
         return false;
@@ -61,7 +54,6 @@ function checkR(){
         R_text.setCustomValidity("Вы вышли за диапазон [1; 4]!");
         return false;
     }
-    R_text.setCustomValidity("");
     return true;
 }
 
@@ -74,13 +66,14 @@ async function submit(){
     let request = ("?x=" + X + "&y=" + Y + "&r=" + R);
     
     try {
-        const response = await fetch("php/check.php" + request);
+        const response = await fetch(request + "php/check.php");
         const result = await response.text();
         document.getElementById("check").innerHTML = result;
     } catch (error) {
         console.log(error);
     }
 };
+
 
 async function clearButton(){
     try {
@@ -92,19 +85,12 @@ async function clearButton(){
     }
 };
 
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('php/load.php', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.text())
-      .then(data => {
-        console.log(data);
-        document.querySelector("#check>tbody").innerHTML = data;
-      })
-      .catch(error => {
+document.addEventListener("DOMContentLoaded", async function(){
+    try{
+        const response = await fetch("php/load.php");
+        const result = await response.text();
+        document.getElementById("check").innerHTML = result;
+    } catch(error){
         console.log(error);
-      });
-  });
+    }
+})

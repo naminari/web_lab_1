@@ -24,13 +24,25 @@ function atArea($x, $y, $r){
         (($x >= 0) && ($x <= $r) && ($y >= 0) && ($y <= $r) && ($y >= -$x + $r)); // Треугольник
 }
 
+/* function checkNumber($variable) {
+    if (is_numeric($variable)) {
+        return $variable;
+    } else {
+        return "not a number";
+    }
+}
+ */
 session_start();
 $start = microtime(true);
 date_default_timezone_set('Europe/Moscow');
 
-$x = isset($_GET["x"]) ? $_GET["x"] : null;
+$x = isset($_GET["x"]) ? str_replace(",", ".", $_GET["x"]) : null;
 $y = isset($_GET["y"]) ? str_replace(",", ".", $_GET["y"]) : null;
 $r = isset($_GET["y"]) ? str_replace(",", ".", $_GET["r"]) : null;
+
+/* $x_value = checkNumber($x);
+$y_value = checkNumber($y);
+$r_value = checkNumber($r); */
 
 if (!checkDataValid($x, $y, $r)){
     http_response_code(400);
@@ -44,7 +56,11 @@ if (!isset($_SESSION['data'])){
 $coordinatesAtArea = atArea($x, $y, $r);
 $currentTime = date("H:i:s");
 $time = number_format(microtime(true) - $start, 10, ".", "") * 1000000;
-$result = array($x, $y, $r, $currentTime, $time, $coordinatesAtArea);
+/* $result = array(number_format($x_value), number_format($y_value), number_format($r_value),
+ $currentTime, $time, $coordinatesAtArea); */
+ $result = array($x, $y, $r, $currentTime, $time, $coordinatesAtArea);
+
 array_push($_SESSION["data"], $result);
+
 
 include "add_in_table.php";
